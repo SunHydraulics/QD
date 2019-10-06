@@ -1,0 +1,240 @@
+﻿      <div class="container bg--white pad content--wrapper">  
+       
+        <section class="bg--light-grey pad block bottom-space">
+          <h3 class="block-title">Your default settings for QuickDesign
+        </h3>
+        <ul>
+          <li class="expandable" id="divgs">
+            <div class="expandable-header">
+              <div class="title">
+                 <xsl:value-of select="//page/qd/screenlabels[@id='219']/@label"/>
+                <!-- General Settings-->
+              </div>
+              <div class="date">
+                <xsl:value-of select="//page/quote/screenlabels[@id='244']/@label"/>
+                  <!--Select your default settings below.-->
+              
+              </div>
+              <div class="expander tx--orange">
+                <xsl:attribute name="onclick">
+                  return;
+                  oli=document.getElementById('divgs');
+                  showhidedetails(this,oli);
+                </xsl:attribute>
+                Expand Details [+]
+              </div>
+            </div>
+            
+            <table class="table expandable-item">
+              <xsl:for-each select="//page/qd/gstypes">
+                <tr>
+                  <td>
+                    <xsl:value-of select="@name"/>
+                  </td>
+                  <td>
+                    <select>
+                      <xsl:attribute name="id">gsid<xsl:value-of select="@id"/></xsl:attribute>
+                      <xsl:attribute name="name">gsid<xsl:value-of select="@id"/></xsl:attribute>
+
+                      <xsl:for-each select="//page/qd/gspref[@settingid = current()/@id]">
+                        <option>
+                          <xsl:attribute name="id">us<xsl:value-of select="@settingid"/></xsl:attribute>
+                          <xsl:attribute name="name">us<xsl:value-of select="@settingid"/></xsl:attribute>
+                          <xsl:attribute name="value">
+                            <xsl:value-of select="@setting"/>
+                          </xsl:attribute>
+                          <xsl:if test="@selected">
+                            <xsl:attribute name="selected">true</xsl:attribute>
+                          </xsl:if>
+                          <xsl:value-of select="@display"/>
+                        </option>
+                      </xsl:for-each>
+                    </select>
+                    <xsl:if test="@id='11'"> (under development)</xsl:if>
+                  </td>
+                  <td>
+                    <xsl:value-of select="@extdescrip"/>
+                  </td>
+                </tr>
+              </xsl:for-each>
+            </table>        
+          </li>
+
+          <li class="expandable" id="divfc">
+            <div class="expandable-header">
+              <div class="title">
+                 Layout preferences
+              </div>
+
+              <div class="expander tx--orange">
+                <xsl:attribute name="onclick">
+                  oli=document.getElementById('divfc');
+                  showhidedetails(this,oli);
+                  //document.getElementById('divcross').style.display="";
+                </xsl:attribute>
+                Expand Details [+]
+              </div>
+            </div>
+
+          <table class="table expandable-item">
+
+            <tr>
+              <td>
+                <xsl:value-of select="//page/qd/screenlabels[@id='227']/@label"/>
+                <!--Mounting Face-->
+
+              </td>
+              <td>
+                <select id="lstmf" name="lstmf">
+                  <xsl:for-each select="//page/qd/faceconst">
+                    <option>
+                      <xsl:attribute name="value">
+                        <xsl:value-of select="@findex"/>
+                      </xsl:attribute>
+                      <xsl:if test="@ismountingface='1'">
+                        <xsl:attribute name="selected">true</xsl:attribute>
+                      </xsl:if>
+                      <xsl:value-of select="@label"/>
+                    </option>
+                  </xsl:for-each>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <xsl:value-of select="//page/qd/screenlabels[@id='195']/@label"/>
+                <!--Cartridges are NOT allowed on-->
+
+              </td>
+              <td>
+                <ul class="horizontal-list">
+                <xsl:for-each select="//page/qd/faceconst">
+                  <li>
+                  <input type="checkbox">
+                    <xsl:attribute name="id">chkfc<xsl:value-of select="@findex"/></xsl:attribute>
+                    <xsl:attribute name="name">chkfc<xsl:value-of select="@findex"/></xsl:attribute>
+                    <xsl:if test="@isfreeofvalves='1'">
+                      <xsl:attribute name="checked">true</xsl:attribute>
+                    </xsl:if>
+                  </input>
+                   <label>
+                        <xsl:attribute name="for">
+                          chkfc<xsl:value-of select="@findex"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="@label"/>
+                   </label>
+                  </li>
+
+                </xsl:for-each>
+              </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <xsl:value-of select="//page/qd/screenlabels[@id='256']/@label"/>
+                <!--Working ports are NOT allowed on-->
+
+              </td>
+              <td>
+                <ul class="horizontal-list">
+                  <xsl:for-each select="//page/qd/faceconst">
+                    <li>
+                    <input type="checkbox">
+                      <xsl:attribute name="id">chkfp<xsl:value-of select="@findex"/></xsl:attribute>
+                      <xsl:attribute name="name">chkfp<xsl:value-of select="@findex"/></xsl:attribute>
+                      <xsl:if test="@isfreeofports='1'">
+                        <xsl:attribute name="checked">true</xsl:attribute>
+                      </xsl:if>
+                    </input>
+                    <label>
+                      <xsl:attribute name="for">
+                        chkfp<xsl:value-of select="@findex"/>
+                      </xsl:attribute>
+                      <xsl:value-of select="@label"/>
+                    </label>
+                  </li>
+                  </xsl:for-each>
+                </ul>
+            </td>
+            </tr>
+            <tr>
+              <td>
+                <xsl:copy-of select="$hcross"/>
+              </td>
+            
+          </tr>
+          </table>
+      
+          </li>
+
+          <li class="expandable" id="divdf">
+            <div class="expandable-header">
+              <div class="title">
+                 Design Features
+              </div>
+              <div class="expander tx--orange">
+                <xsl:attribute name="onclick">
+                  oli=document.getElementById('divdf');
+                  showhidedetails(this,oli);
+                </xsl:attribute>
+                Expand Details [+]
+              </div>
+            </div>
+          <table class="table expandable-item">
+            <tr>
+              <th>
+                <xsl:value-of select="//page/qd/screenlabels[@id='222']/@label"/>
+                <!--Item-->
+
+              </th>
+              <th>
+                Show
+              </th>
+            </tr>
+            <xsl:for-each select="//page/qd/features">
+              <tr>
+                <td>
+                  <xsl:value-of select="@name"/>
+                </td>
+                <td>
+                  <xsl:if test="not (@mayedit)">
+                    Always
+                  </xsl:if>
+                  <xsl:if test="@mayedit">
+                    <input type="checkbox">
+                      <xsl:attribute name="id">dfid<xsl:value-of select="@id"/></xsl:attribute>
+                      <xsl:attribute name="name">dfid<xsl:value-of select="@id"/></xsl:attribute>
+                      <xsl:if test="not (@exclude)">
+                        <xsl:attribute name="checked">true</xsl:attribute>
+                      </xsl:if>
+                    </input>
+
+                  </xsl:if>
+                </td>
+                <!--
+						  <td>
+							  <xsl:if test="@mayedit">
+								  <input type="textbox" class="textboxnormal" style="width:20px;">
+									  <xsl:attribute name="id">dfsort<xsl:value-of select="@id"/>
+											  </xsl:attribute>
+									  <xsl:attribute name="name">dfsort<xsl:value-of select="@id"/>
+											  </xsl:attribute>
+									  <xsl:attribute name="value">
+										  <xsl:value-of select="@sortorder"/>
+									  </xsl:attribute>
+
+								  </input>
+							  </xsl:if>	
+						  </td>
+						  -->
+              </tr>
+            </xsl:for-each>
+          </table>
+ 
+          </li>
+        
+        </ul>
+      </section>
+
+    
+    </div>

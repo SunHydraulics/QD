@@ -1,0 +1,37 @@
+﻿.legalese{
+	font-family:sans-serif;
+}
+.legalese p{
+	margin:auto;
+	padding-bottom:12px !important;
+	line-height:20px;
+}
+.legalese li{
+list-style-type:disc;
+list-style-position:outside;
+padding-bottom:6px;
+margin-left:24px;
+display:list-item;
+}
+.legalese .listitems{
+	line-height:20px;
+}
+.legalese .title{
+	font-weight:bold;
+	font-size:130%;
+	padding-bottom:8px;
+}
+.legalese .header{
+	font-weight:bold;
+	padding-bottom:8px;
+	padding-top:8px;
+	text-align:left;
+	border:none;
+	background:inherit;
+}
+.legalese .subital{
+	font-style:italic;
+	padding-bottom:4px;
+	padding-top:8px;
+}
+

@@ -1,0 +1,68 @@
+﻿body
+{
+width:7.9in;
+font-family:/*Liberation Sans Narrow,*/ Arial, Sans-Serif;
+font-size:9pt;
+color:Black;
+height:100%;
+}
+hr
+{
+  height:3px;
+}
+table {
+	border-collapse: collapse; 
+}
+.cutsheettext, .cutsheettextbold, .cutsheettextinverse
+{
+  color:#555555;
+  font-size: 7.7pt;
+	padding-left:5px;
+}
+.cutsheettextbold
+{
+  font-weight:bold;
+}
+.cutsheettextinverse
+{
+  color:#FFFFFF !important;
+  background-color:#000000 !important;
+}
+.cutsheetheader, .cutsheetheaderbold
+{
+  font-size: 8.7pt;
+	padding-left:5px;
+
+	
+}
+.cutsheetlarge
+{
+
+ font-size: 10pt;
+	padding-left:5px; 
+	font-weight:bold;
+
+
+}
+.tablelabel
+{
+  font-weight:bold;
+  font-size:115%;
+  padding-left:5px;
+}
+.tabletext
+{
+  font-weight:normal;
+  font-size:100%;
+  padding-left:5px;
+}
+.wrapper {
+  min-height: 100%;
+  max-width:8in;
+  height: 10in !important;
+}
+
+.footer {
+  page-break-after: always;
+  max-width:8in;
+}
