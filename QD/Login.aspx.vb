@@ -68,8 +68,13 @@
         End If
 
         If Session("QDLiteLogin") = "-1" And nresult = False Then
-            serrmess = "The password you entered is incorrect. You can use the link below to reset your password. If you continue to have trouble logging into your account, please email sunquickdesign@sunhydraulics.com."
-
+            'serrmess = "The password you entered is incorrect. You can use the link below to reset your password. If you continue to have trouble logging into your account, please email sunquickdesign@sunhydraulics.com."
+            serrmess = "The password you entered is incorrect. " +
+                "If you have forgotten your password, use the link below to reset it. " +
+                "If you have not used QuickDesign in a while, contact sunquickdesign@sunhydraulics.com " +
+                "and request that your account be activated.  " +
+               "If you continue to have trouble logging into your account, " +
+                "please email sunquickdesign@sunhydraulics.com."
             'serrmess = "That's not the correct password. "
             'serrmess += "If you've forgotten your password, see below for options. Sun Distributors: Please contact Sun if you have not requested to be upgraded to this version of QuickDesign."
         End If

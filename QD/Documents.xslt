@@ -62,8 +62,7 @@
               </span>
             </h2>
             <p class="grayitalic">This design has moved into Sun's production process.  
-            More details about the current configuration and pricing will be 
-            available here soon.             
+                        
             </p>
             <xsl:if test="//page/qd[adminlevel='1']">
               
@@ -175,61 +174,70 @@
             <xsl:value-of select="//page/qd/screenlabels[@id='240']/@label"/>:
             <!--QuickDesign Results-->
           </b>
-					<xsl:if test="//page/qd/events[@selected='1']/@mdtoolsstatus">
-						<p class="grayitalic">(Note: this version was updloaded or resubmitted)</p>
-					</xsl:if>
-          <xsl:if test="//page/qd/iscurrentaranalysiserror">
+          <xsl:if test="//page/qd/isproduction">
             <p class="grayitalic">
-              ATTN: See the BD Analysis report
+              <xsl:value-of select="//page/qd/seehistorysection"/>
             </p>
           </xsl:if>
-          <xsl:if test="//page/qd/actions/@message">
-            <p class="grayitalic">
-              <xsl:value-of select="//page/qd/actions/@message"/>
-            </p>
+          <xsl:if test="//page/qd[not (isproduction)]">
+					  <xsl:if test="//page/qd/events[@selected='1']/@mdtoolsstatus">
+						  <p class="grayitalic">(Note: this version was updloaded or resubmitted)</p>
+					  </xsl:if>
+            <xsl:if test="//page/qd/iscurrentaranalysiserror">
+              <p class="grayitalic">
+                ATTN: See the BD Analysis report
+              </p>
+            </xsl:if>
+            <xsl:if test="//page/qd/actions/@message">
+              <p class="grayitalic">
+                <xsl:value-of select="//page/qd/actions/@message"/>
+              </p>
+            </xsl:if>
+            <div class="bottom-border">
+              <xsl:for-each select="//page/qd/currentfiletypes[@filetype &gt; '19']">
+                <table class="tablefiles">
+                  <tr>
+                 <td>
+                  <xsl:value-of select="@name"/>:
+                </td>                 
+                <td>
+                  <xsl:attribute name="id">
+                    cellcurrent<xsl:value-of select="@filetype"/>
+                  </xsl:attribute>
+                  <xsl:for-each select="//page/qd/filelinks[@filetype = current()/@filetype
+											            and @iscurrent='1']">
+                    <xsl:if test="@fileitem !='2'">
+                    <a class="tx--orange underline">
+                        <xsl:attribute name="href"><xsl:value-of select="@mappath"/><xsl:value-of select="@filename"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="target">_blank</xsl:attribute>
+                        <xsl:value-of select="@display"/>
+                      </a>
+                      <!--
+                      <a class="tx- -orange underline" href="#">
+                        <xsl:attribute name="onclick">
+                          var nwin = window.open('<xsl:value-of select="@mappath"/><xsl:value-of select="@filename"/>',
+                          'fileviewer' , 'menubar=1,toolbar=1,scrollbars=1,height=900,width=1000,left=30,top=30,resizable=yes')
+                          nwin.focus();
+                          return false
+                        </xsl:attribute>
+                        <xsl:value-of select="@display"/>
+                      </a>
+                    -->
+                    </xsl:if>
+                  </xsl:for-each>
+
+                </td>
+                </tr>
+                </table>
+
+              </xsl:for-each>
+            </div>
           </xsl:if>
-          <div class="bottom-border">
-            <xsl:for-each select="//page/qd/currentfiletypes[@filetype &gt; '19']">
-              <table class="tablefiles">
-                <tr>
-               <td>
-                <xsl:value-of select="@name"/>:
-              </td>                 
-              <td>
-                <xsl:attribute name="id">
-                  cellcurrent<xsl:value-of select="@filetype"/>
-                </xsl:attribute>
-                <xsl:for-each select="//page/qd/filelinks[@filetype = current()/@filetype
-											          and @iscurrent='1']">
-                  <xsl:if test="@fileitem !='2'">
-                  <a class="tx--orange underline">
-                      <xsl:attribute name="href"><xsl:value-of select="@mappath"/><xsl:value-of select="@filename"/>
-                      </xsl:attribute>
-                      <xsl:attribute name="target">_blank</xsl:attribute>
-                      <xsl:value-of select="@display"/>
-                    </a>
-                    <!--
-                    <a class="tx- -orange underline" href="#">
-                      <xsl:attribute name="onclick">
-                        var nwin = window.open('<xsl:value-of select="@mappath"/><xsl:value-of select="@filename"/>',
-                        'fileviewer' , 'menubar=1,toolbar=1,scrollbars=1,height=900,width=1000,left=30,top=30,resizable=yes')
-                        nwin.focus();
-                        return false
-                      </xsl:attribute>
-                      <xsl:value-of select="@display"/>
-                    </a>
-                  -->
-                  </xsl:if>
-                </xsl:for-each>
-
-              </td>
-              </tr>
-              </table>
-
-            </xsl:for-each>
-          </div>
+          
             <b>
-              <xsl:value-of select="//page/qd/screenlabels[@id=644]/@label"/>:          <!--Related Info-->
+              <xsl:value-of select="//page/qd/screenlabels[@id=644]/@label"/>:          
+              <!--Related Info-->
             </b>
           <p>
             <xsl:for-each select="//page/qd/links[@ispdd='1']">

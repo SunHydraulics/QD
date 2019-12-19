@@ -152,7 +152,7 @@
 
 
         <xsl:if test="//page/errmess">
-          <div class="row">
+          <div class="loginoptions" style="font-size:80%;">
             <xsl:value-of select="//page/errmess" disable-output-escaping="yes"/>
           </div>
         </xsl:if>
@@ -160,10 +160,7 @@
         <input type="hidden" name="pwd" value=""/>
         <br/>
         <br/>
-
-
         <div class="notification alert pad-half" id="screenmessage" style="display:none"/>
-
 
         <hr/>
 
