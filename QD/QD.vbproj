@@ -159,6 +159,7 @@
     <Content Include="images\arrowleftred.png" />
     <Content Include="images\arrowright.png" />
     <Content Include="images\arrowrightred.png" />
+    <Content Include="images\ArrowUp.png" />
     <Content Include="images\Bullet.png" />
     <Content Include="images\Checked.GIF" />
     <Content Include="images\CrossPilot.png" />

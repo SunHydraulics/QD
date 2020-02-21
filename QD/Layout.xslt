@@ -16,7 +16,9 @@
         <xsl:value-of select="//page/qd/errormessage"/>
       </div>
     </xsl:if>
-    
+    <button onclick="topFunction()" id="gotopbutton" title="Go to top">
+    <img src="images/arrowup.png"/>
+    </button>
     <div class="site--wrapper">
       <div class="container bg--white pad content--wrapper">
         <section class="block bottom-space grid">
@@ -71,39 +73,45 @@ don't forget the double dash in bg light
           <div class="col-3-5">
 
             <form class="grid bg--light-grey pad bottom-space">
-              <a id="facedesignationanchor"/>
-              <h4 class="block-title">
-                <xsl:value-of select="//page/qd/screenlabels[@id=604]/@label"/>
-                <!--Face Designations-->
-              </h4>
+              <div class="bg--light-grey pad-half lightborder">
+                <a id="facedesignationanchor"/>
+                <h4 class="block-title">
+                  <xsl:value-of select="//page/qd/screenlabels[@id=604]/@label"/>
+                  <!--Face Designations-->
+                </h4>
 
-              <div class="row bottom-space-double">
-                <label for="category">
-                  <xsl:value-of select="//page/qd/screenlabels[@id='491']/@label"/>:
-                  <!--The mounting face is -->
-                </label>
+                <div class="row bottom-space-double">
+                  <label for="category">
+                    <xsl:value-of select="//page/qd/screenlabels[@id='491']/@label"/>:
+                    <!--The mounting face is -->
+                  </label>
                   <input type="hidden" id="txtmountingface"/>
-                   <xsl:for-each select="//page/qd/faceconst">
-                      <input type="radio" class="radiomountingface">
-                        <xsl:attribute name="id">lstmf<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="name">lstmf</xsl:attribute>
-                        <xsl:attribute name="value"><xsl:value-of select="@findex"/></xsl:attribute>
-                          <xsl:attribute name="onclick">
-                          $(".waitmodal").show();  
-                          this.value='<xsl:value-of select="@findex"/>';
-                          faceconadj('m','<xsl:value-of select="@findex"/>');
-                        </xsl:attribute>
-                        <xsl:if test="@ismountingface='1'">
-                          <xsl:attribute name="checked">true</xsl:attribute>
-                        </xsl:if>
-                      </input>
-                        <span><xsl:value-of select="@label"/></span>
-                      
+                  <xsl:for-each select="//page/qd/faceconst">
+                    <input type="radio" class="radiomountingface">
+                      <xsl:attribute name="id">
+                        lstmf<xsl:value-of select="@findex"/>
+                      </xsl:attribute>
+                      <xsl:attribute name="name">lstmf</xsl:attribute>
+                      <xsl:attribute name="value">
+                        <xsl:value-of select="@findex"/>
+                      </xsl:attribute>
+                      <xsl:attribute name="onclick">
+                        $(".waitmodal").show();
+                        this.value='<xsl:value-of select="@findex"/>';
+                        faceconadj('m','<xsl:value-of select="@findex"/>');
+                      </xsl:attribute>
+                      <xsl:if test="@ismountingface='1'">
+                        <xsl:attribute name="checked">true</xsl:attribute>
+                      </xsl:if>
+                    </input>
+                    <span>
+                      <xsl:value-of select="@label"/>
+                    </span>
+
                   </xsl:for-each>
 
 
-              <!--
+                  <!--
                 <select id="lstmf" name="lstmf">
                   <xsl:attribute name="onchange">
                     faceconadj('m',this.value);
@@ -121,80 +129,92 @@ don't forget the double dash in bg light
                   </xsl:for-each>
                 </select>
               -->
-              </div>
+                </div>
 
-              <div class="row bottom-space-double">
-                <label for="working-ports">
-                  <xsl:value-of select="//page/qd/screenlabels[@id='171']/@label"/>:
-                  <!-- Cartridges are NOT allowed on-->
-                </label>
-                <ul class="horizontal-list">
-                  <xsl:for-each select="//page/qd/faceconst">
-                    <li>
-                      <input type="checkbox">
-                        <xsl:attribute name="id">chkfc<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="name">chkfc<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="onclick">
-                          this.value=this.checked;
-                          $(".waitmodal").show();
-                          faceconadj('c','<xsl:value-of select="@findex"/>');
-                        </xsl:attribute>
-                        <xsl:if test="@isfreeofvalves='1'">
-                          <xsl:attribute name="checked">true</xsl:attribute>
-                        </xsl:if>
-                      </input>
-                      <label>
-                        <xsl:attribute name="for">chkfc<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="@label"/>
-                      </label>
-                    </li>
-                  </xsl:for-each>
+                <div class="row bottom-space-double">
+                  <label for="working-ports">
+                    <xsl:value-of select="//page/qd/screenlabels[@id='171']/@label"/>:
+                    <!-- Cartridges are NOT allowed on-->
+                  </label>
+                  <ul class="horizontal-list">
+                    <xsl:for-each select="//page/qd/faceconst">
+                      <li>
+                        <input type="checkbox">
+                          <xsl:attribute name="id">
+                            chkfc<xsl:value-of select="@findex"/>
+                          </xsl:attribute>
+                          <xsl:attribute name="name">
+                            chkfc<xsl:value-of select="@findex"/>
+                          </xsl:attribute>
+                          <xsl:attribute name="onclick">
+                            this.value=this.checked;
+                            $(".waitmodal").show();
+                            faceconadj('c','<xsl:value-of select="@findex"/>');
+                          </xsl:attribute>
+                          <xsl:if test="@isfreeofvalves='1'">
+                            <xsl:attribute name="checked">true</xsl:attribute>
+                          </xsl:if>
+                        </input>
+                        <label>
+                          <xsl:attribute name="for">
+                            chkfc<xsl:value-of select="@findex"/>
+                          </xsl:attribute>
+                          <xsl:value-of select="@label"/>
+                        </label>
+                      </li>
+                    </xsl:for-each>
 
-                </ul>
-              </div>
+                  </ul>
+                </div>
 
-              <div class="row">
-                <label for="category">
-                  <xsl:value-of select="//page/qd/screenlabels[@id='188']/@label"/>:
-                  <!-- Working ports are NOT allowed on-->
-                </label>
-                <ul class="horizontal-list">
-                  <xsl:for-each select="//page/qd/faceconst">
-                    <li>
-                      <input type="checkbox">
-                        <xsl:attribute name="id">chkfp<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="name">chkfp<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="onclick">
-                          $(".waitmodal").show();
-                          this.value=this.checked;
-                          faceconadj('p','<xsl:value-of select="@findex"/>');
-                        </xsl:attribute>
-                        <xsl:if test="@isfreeofports='1'">
-                          <xsl:attribute name="checked">true</xsl:attribute>
-                        </xsl:if>
-                      </input>
-                      <label>
-                        <xsl:attribute name="for">
-                          chkfp<xsl:value-of select="@findex"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="@label"/>
-                      </label>
-                    </li>
-                  </xsl:for-each>
+                <div class="row">
+                  <label for="category">
+                    <xsl:value-of select="//page/qd/screenlabels[@id='188']/@label"/>:
+                    <!-- Working ports are NOT allowed on-->
+                  </label>
+                  <ul class="horizontal-list">
+                    <xsl:for-each select="//page/qd/faceconst">
+                      <li>
+                        <input type="checkbox">
+                          <xsl:attribute name="id">
+                            chkfp<xsl:value-of select="@findex"/>
+                          </xsl:attribute>
+                          <xsl:attribute name="name">
+                            chkfp<xsl:value-of select="@findex"/>
+                          </xsl:attribute>
+                          <xsl:attribute name="onclick">
+                            $(".waitmodal").show();
+                            this.value=this.checked;
+                            faceconadj('p','<xsl:value-of select="@findex"/>');
+                          </xsl:attribute>
+                          <xsl:if test="@isfreeofports='1'">
+                            <xsl:attribute name="checked">true</xsl:attribute>
+                          </xsl:if>
+                        </input>
+                        <label>
+                          <xsl:attribute name="for">
+                            chkfp<xsl:value-of select="@findex"/>
+                          </xsl:attribute>
+                          <xsl:value-of select="@label"/>
+                        </label>
+                      </li>
+                    </xsl:for-each>
 
-                </ul>
+                  </ul>
+                </div>
               </div>
             </form>
-
+            <div class="grayitalic pad-half subtitle">
+              <xsl:value-of select="//page/qd/screenlabels[@id=728]/@label"/>
+              <!--Choices above affect Any Allowable below.-->
+            </div>
             <div class="bg--light-grey pad-half lightborder">
-              <div class="cartplacementmessage">
-              <xsl:value-of select="//page/qd/cartmessage/@cartmessage"/>
-              </div>
+              <xsl:if test="//page/qd/hideconfig">
+                <div class="cartplacementmessage">
+                  <xsl:value-of select="//page/qd/cartmessage/@cartmessage"/>
+                  <br/><br/>
+                </div>
+              </xsl:if>  
               <xsl:if test="//page/qd[not (hideconfig)]">
              <h4 class="block-title">
                <xsl:value-of select="//page/qd/screenlabels[@id=605]/@label"/>
@@ -244,8 +264,8 @@ don't forget the double dash in bg light
                         </img>
 
                         <xsl:if test="current()[not (@placementindex)]">
-                          Any
-                          <!--<xsl:value-of select="//page/qd/screenlabels[@id='371']/@label"/>-->
+                         
+                         <xsl:value-of select="//page/qd/screenlabels[@id='371']/@label"/>
                           <!-- Any allowable  -->
 
                         </xsl:if>
@@ -388,7 +408,7 @@ don't forget the double dash in bg light
                       <xsl:value-of select="//page/qd/screenlabels[@id='185']/@label"/>
                       <!--Ports -->
                     </th>
-                    <th>
+                    <th style="min-width:160px;">
                       <xsl:value-of select="//page/qd/screenlabels[@id='177']/@label"/>
                       <!--Faces -->
                     </th>
@@ -422,8 +442,8 @@ don't forget the double dash in bg light
                         </img>
 
                         <xsl:if test="current()[not (@placementindex)]">
-                          <xsl:value-of select="//page/qd/screenlabels[@id=607]/@label"/>
-                          <!--Any-->
+                          <xsl:value-of select="//page/qd/screenlabels[@id=371]/@label"/>
+                          <!--Any allowable-->
                           </xsl:if>
                         <xsl:if test="//page/qd/featurefaces[@qcircuitid=current()/@qcircuitid]">
                           <font class="accentfont">
@@ -690,7 +710,14 @@ don't forget the double dash in bg light
               <h4 class="block-title">
                 <xsl:value-of select="//page/qd/screenlabels[@id='174']/@label"/>
                 <!--Construction Ports -->
+
+                   <div class="blocktitlesub">
+                   <xsl:value-of select="//page/qd/screenlabels[@id=727]/@label"/>
+                    <!--(Choice required for submittal.)-->
+                  </div>                 
+     
               </h4>
+
               <ul class="vertical-list">
                 <xsl:for-each select="//page/qd/constports">
                   <li >
@@ -726,6 +753,12 @@ don't forget the double dash in bg light
               <h4 class="block-title">
                 <xsl:value-of select="//page/qd/screenlabels[@id='182']/@label"/>
                 <!--Mounting Holes -->
+
+                  <div class="blocktitlesub">
+                    <xsl:value-of select="//page/qd/screenlabels[@id=727]/@label"/>
+                    <!--(Choice required for submittal.)-->
+                  </div>
+
               </h4>
               <ul class="vertical-list">
                 <xsl:for-each select="//page/qd/mh">
@@ -972,5 +1005,22 @@ don't forget the double dash in bg light
       </div>
     <div class="popup-overlay"></div>
     <div class="waitmodal"/>
+    <script>
+      var mybutton = document.getElementById("gotopbutton");
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
   </xsl:template>
 </xsl:stylesheet>

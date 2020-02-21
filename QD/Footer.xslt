@@ -3,7 +3,7 @@
   <xsl:output method="html" indent="yes"/>
   <xsl:template match="/">
     <footer class="site--footer container pad">
-      Copyright © 2019 - All rights reserved
+      Copyright © 2020 - All rights reserved
       <div>
         <a href="http://www.sunhydraulics.com">Sun Hydraulics</a> - <a target="tandc" href="report.aspx?page=tandc">Terms and Conditions</a>
       </div>

@@ -52,6 +52,9 @@
               <Hole_ID>
                 <xsl:value-of select="@Hole_ID"/>
               </Hole_ID>
+              <Cavity_Type>
+                <xsl:value-of select="@Cavity_Type"/>
+              </Cavity_Type>
               <LS>
                 <xsl:value-of select="@LS_Depth"/>
               </LS>
